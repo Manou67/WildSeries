@@ -23,7 +23,7 @@ Class WildController extends AbstractController
     }
 
     /**
-     * @Route("/wild/show/{page<([a-z0-9-]*)\w+>}",
+     * @Route("/wild/show/{page<([a-z0-9-])\w+>}",
      *     defaults={"page"="Aucune série sélectionnée, veuillez choisir une série"},
      *      name="wild_show")
      */
