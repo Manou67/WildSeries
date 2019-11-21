@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+    {% for serie in series %}
+        {{ serie.id }}
+        <br>
+        <br>
+        {{ serie.title }}
+        <br>
+        <br>
+        {{ serie.summary }}
+        <br>
+        <br>
+        {% endfor %}
+    {% endblock %}
