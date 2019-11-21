@@ -1,11 +1,42 @@
-$theme-colors: (
-        "main": #0074d9,
-        "secondary": #ff4136
-);
+@import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+ * {
+   color:#949494;
+ }
 
-
-body {
-    background-color: white;
+header {
+  img {
+    margin:0 30px;
+  }
+  background-color:#4F3930;
+  a {
+    color:#949494;
+    font-size:22px;
+  }
+  button {
+    color:#949494 !important;
+  }
+  .navbar-brand{
+    font-size:36px;
+    margin-right:10%;
+  }
+  .dropdown {
+    margin:0 2%;
+  }
+  .favorite {
+    margin:0 3%;
+  }
+  .deconnexion {
+    margin:0 6%;
+  }
+  .secondImage {
+    border-radius:50%;
+  }
 }
 
-@import "~bootstrap/scss/bootstrap";
+.background {
+
+    position:fixed;
+    height:100%;
+    width:100%;
+    z-index: -1;
+}
