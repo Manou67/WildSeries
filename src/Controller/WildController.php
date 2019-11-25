@@ -87,18 +87,12 @@ Class WildController extends AbstractController
     }
 
     /**
-     * Getting a program with a formatted slug for title
-     * @Route("/wild/season/{slug}", defaults={"slug" = null}, name="wild_season")
-     * @param int|null $slug
+     * @Route("/wild/season/{season}-{id}", name="wild_season")
+     * @param Season $season
+     * @param Program $id
      * @return Response
      */
-    public function season(?int $slug):Response {
-        $program = $this->getDoctrine()
-            ->getRepository(Program::class)
-            ->findOneBy(['title' => mb_strtolower($slug)]);
-        $season = $this->getDoctrine()
-            ->getRepository(Season::class)
-            ->findOneBy(['id' => $slug]);
+    public function season(Program $id, Season $season):Response {
         $episodes = $this->showBySeason($season);
         return $this->render('wild/season.html.twig', ['episodes' => $episodes]);
 
