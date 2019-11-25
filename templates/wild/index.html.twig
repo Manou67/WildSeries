@@ -11,6 +11,12 @@
     {% else %}
         Aucune série trouvée.
     {% endfor %}
+    {{ form_start(form) }}
+
+    {{ form_row(form.name) }}
+
+<input type="submit"/>
+    {{ form_end(form) }}
     <a href="{{ path('app_index') }}">
         Retour à l'accueil
     </a>
