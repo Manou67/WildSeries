@@ -29,4 +29,24 @@ header {
   width: 100%;
   z-index: -1; }
 
+/* ------------------------------------------- PAGE SHOW -------------------------------------------*/
+#showPage #seasons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; }
+  #showPage #seasons .season {
+    border: 2px solid black;
+    padding: 20px;
+    width: 40%;
+    max-height: 100px;
+    overflow: hidden;
+    margin: 10px; }
+#showPage .programInfo {
+  height: 400px;
+  width: 100%; }
+#showPage .poster {
+  height: 250px;
+  margin: auto;
+  display: block; }
+
 /*# sourceMappingURL=app.css.map */

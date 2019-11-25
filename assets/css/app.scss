@@ -3,6 +3,7 @@
    color:#949494;
  }
 
+
 header {
   img {
     margin:0 30px;
@@ -39,4 +40,32 @@ header {
     height:100%;
     width:100%;
     z-index: -1;
+}
+
+/* ------------------------------------------- PAGE SHOW -------------------------------------------*/
+
+#showPage {
+  #seasons {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    .season {
+      border:2px solid black;
+      padding:20px;
+      width:40%;
+      max-height:100px;
+      overflow:hidden;
+      margin:10px;
+    }
+  }
+  .programInfo {
+    height:400px;
+    width:100%;
+  }
+  .poster {
+    height:250px;
+    margin:auto;
+    display:block;
+
+  }
 }
