@@ -25,8 +25,6 @@ class DefaultController extends AbstractController
             ->findAll();
         return $this->render('index.html.twig', [
             'website' => 'Wild Séries',
-            'categories' => $categories,
-            'programs' => $programs
         ]);
     }
 }

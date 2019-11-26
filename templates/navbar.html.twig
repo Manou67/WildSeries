@@ -9,7 +9,7 @@
             Categories
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {% for category in categories %}
+            {% for category in categoriesAll.getAll %}
             <a class="dropdown-item" href="#">{{ category.name }}</a>
             {% endfor %}
         </div>
@@ -19,7 +19,7 @@
             Programs
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {% for program in programs %}
+            {% for program in programsAll.getAll %}
                 <a href="{{ path('wild_show', {"slug" : program.title | lower | replace({" " : "-"})}) }}">{{ program.title }}</a>
             {% endfor %}
         </div>
