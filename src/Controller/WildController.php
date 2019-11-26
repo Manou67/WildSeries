@@ -29,6 +29,19 @@ Class WildController extends AbstractController
         return $season->getEpisodes();
     }
 
+    public function getAllPrograms() {
+        $programs = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->findAll();
+        return $programs;
+    }
+
+    public function getAllCategories(){
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findAll();
+        return $categories;
+    }
     public function add($object) {
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($object);
@@ -44,10 +57,8 @@ Class WildController extends AbstractController
     public function index(Request $request) :Response
     {
 
-        $programs = $this->getDoctrine()
-            ->getRepository(Program::class)
-            ->findAll();
-
+        $programs = $this->getAllPrograms();
+        $categories =$this->getAllCategories();
         if (!$programs) {
             throw $this->createNotFoundException(
                 'No program found in program\'s table.'
@@ -68,6 +79,7 @@ Class WildController extends AbstractController
             [
                 'programs' => $programs,
                 'form' => $form->createView(),
+                'categories' => $categories
                 ]
         );
     }
@@ -103,22 +115,28 @@ Class WildController extends AbstractController
         }
 
         $seasons = $this->showByProgram($program);
+        $programs = $this->getAllPrograms();
+        $categories =$this->getAllCategories();
         return $this->render('wild/show.html.twig', [
             'program' => $program,
             'slug'  => $slug,
-            'seasons' => $seasons
+            'seasons' => $seasons,
+            'programs' => $programs,
+            'categories' => $categories
         ]);
     }
 
     /**
-     * @Route("/wild/season/{season}-{id}", name="wild_season")
+     * @Route("/wild/season/{id}-{season}", name="wild_season")
      * @param Season $season
      * @param Program $id
      * @return Response
      */
     public function season(Program $id, Season $season):Response {
         $episodes = $this->showBySeason($season);
-        return $this->render('wild/season.html.twig', ['episodes' => $episodes]);
-
+        $programs = $this->getAllPrograms();
+        $categories =$this->getAllCategories();
+        return $this->render('wild/season.html.twig', ['episodes' => $episodes,
+            'program' => $id, 'programs' => $programs,'categories' => $categories]);
     }
 }

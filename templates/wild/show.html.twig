@@ -17,7 +17,7 @@
             {% set i = 0 %}
             {% for season in seasons %}
                 {% set i = i + 1 %}
-                <a class="season" href="../season/{{ season.id }}">
+                <a class="season" href="../season/{{ program.id }}-{{ season.id }}">
                     <h4>Season {{ i }}</h4>
                 </a>
             {% endfor %}

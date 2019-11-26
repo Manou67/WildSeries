@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
     <img src="" height="50px" width="50px" />
-    <a class="navbar-brand" href="#">Wild Series</a>
+    <a class="navbar-brand" href="../../../../">Wild Series</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,19 +9,19 @@
             Categories
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Gore</a>
-            <a class="dropdown-item" href="#">Sci-fi</a>
+            {% for category in categories %}
+            <a class="dropdown-item" href="#">{{ category.name }}</a>
+            {% endfor %}
         </div>
     </div>
     <div class="dropdown">
         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Actors
+            Programs
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">1</a>
-            <a class="dropdown-item" href="#">2</a>
-            <a class="dropdown-item" href="#">3</a>
+            {% for program in programs %}
+                <a href="{{ path('wild_show', {"slug" : program.title | lower | replace({" " : "-"})}) }}">{{ program.title }}</a>
+            {% endfor %}
         </div>
     </div>
     <a class="favorite" href="#">Mes favoris</a>
