@@ -2,3 +2,7 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+  # config/packages/twig.yaml
+    globals:
+      categoriesAll: '@App\Service\CategoriesManagement'
+      programsAll: '@App\Service\ProgramsManagement'
