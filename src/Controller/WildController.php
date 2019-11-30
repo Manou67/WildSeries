@@ -2,6 +2,7 @@
 // src/Controller/WildController.php
 namespace App\Controller;
 
+use App\Entity\Actor;
 use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
@@ -138,5 +139,29 @@ Class WildController extends AbstractController
         $categories =$this->getAllCategories();
         return $this->render('wild/season.html.twig', ['episodes' => $episodes,
             'program' => $id, 'programs' => $programs,'categories' => $categories]);
+    }
+
+    /**
+     * @Route("/wild/actor/{name}",defaults={"name" = null}, name="wild_actor")
+     * @param String $name
+     * @return Response
+     */
+    public function actor(String $name) {
+        $programs = $this->getAllPrograms();
+
+        if (!$name) {
+            throw $this
+                ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
+        }
+
+        $name = preg_replace(
+            '/-/',
+            ' ', ucwords(trim(strip_tags($name)), "-")
+        );
+        $actor = $this->getDoctrine()
+            ->getRepository(Actor::class)
+            ->findOneBy(['name' => $name]);
+
+        return $this->render('wild/actor.html.twig', ['actor' => $actor,'program' => $programs]);
     }
 }
