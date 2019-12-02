@@ -151,7 +151,7 @@ class Program
     {
         if (!$this->actors->contains($actor)) {
             $this->actors[] = $actor;
-            $actor->addProgramss($this);
+            $actor->addProgram($this);
         }
 
         return $this;
@@ -161,7 +161,7 @@ class Program
     {
         if ($this->actors->contains($actor)) {
             $this->actors->removeElement($actor);
-            $actor->removeProgramss($this);
+            $actor->removeProgram($this);
         }
 
         return $this;
