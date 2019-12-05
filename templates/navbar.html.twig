@@ -20,7 +20,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {% for program in programsAll.getAll %}
-                <a href="{{ path('wild_show', {"slug" : program.title | lower | replace({" " : "-"})}) }}">{{ program.title }}</a>
+                <a href="{{ path('wild_show', {"slug" : program.slug | lower | replace({" " : "-"})}) }}">{{ program.title }}</a>
             {% endfor %}
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Program;
+use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -10,7 +11,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class ProgramFixtures extends Fixture  implements DependentFixtureInterface
 {
     CONST PROGRAMS = [
-        'Walking-dead' => [
+        'Walking dead' => [
             'summary' => 'The Walking Dead takes place after the onset of a worldwide zombie apocalypse. The zombies, colloquially referred to as "walkers", shamble towards living humans and other creatures to eat them; they are attracted to noise, such as gunshots, and to different scents, e.g. humans. Although it initially seems that only humans that are bitten or scratched by walkers can turn into other walkers, it is revealed early in the series that all living humans carry the pathogen responsible for the mutation. The mutation is activated after the death of the pathogen\'s host, and the only way to permanently kill a walker is to damage its brain or destroy the body, such as by cremating it. ',
         ],
         'The Haunting of Hill House' => [
@@ -26,6 +27,8 @@ class ProgramFixtures extends Fixture  implements DependentFixtureInterface
             $program->setSummary($data['summary']);
             $program->setCategory($this->getReference('categorie_0'));
             $this->addReference('program_' . $i,$program);
+            $slugify = new Slugify();
+            $program->setSlug($slugify->generate($program->getTitle()));
             $manager->persist($program);
             $i++;
         }

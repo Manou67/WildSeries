@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +38,8 @@ class ProgramController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($program);
+            $slugify = new Slugify();
+            $program->setSlug($slugify->generate($program->getTitle()));
             $entityManager->flush();
 
             return $this->redirectToRoute('program_index');
@@ -65,10 +68,10 @@ class ProgramController extends AbstractController
     {
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $slugify = new Slugify();
+            $program->setSlug($slugify->generate($program->getTitle()));
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('program_index');
         }
 
